@@ -1,0 +1,6 @@
+# Keil build output and local IDE state
+Objects/
+Listings/
+*.uvoptx
+*.uvguix.*
+.vscode/
