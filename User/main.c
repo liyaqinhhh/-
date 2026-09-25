@@ -9,51 +9,47 @@
 #include "Encoder.h"
 #include "Serial.h"
 #include "BlueSerial.h"
+#include "Init.h"
+#include "PID.h"
 
+
+int16_t KeyNum = 0;	
 /* 时间片轮询示例：OLED 显示内容，PC13 LED 每 500 ms 翻转一次 */
 int main(void)
 {
 	/*模块初始化*/
-	OLED_Init();	//OLED初始化
-	LED_Init();		//LED初始化，此LED为STM32板载连接在PC13端口的LED
-	
-	/*显示测试字符串*/
-	/*此OLED模块与STM32入门教程中的OLED模块不一样，不能通用*/
-	/*OLED模块教程，可以参考链接：https://www.bilibili.com/video/BV1EN41177Pc*/
-	OLED_Printf(0, 0, OLED_8X16, "Hello World!");	//8X16字体
-	OLED_Printf(0, 16, OLED_6X8, "Hello World!");	//6X8字体
-	
-	/*调用OLED功能函数后，必须调用OLED_Update，否则OLED将不会收到任何数据*/
-	OLED_Update();
-	Timer_Init();	//TIM1 每 1 ms 产生一次时间片节拍
+	Init_all();
 
 	while (1)
 	{
-		Time_Slice_Main();
+		//OLED_show();
 	}
 }
 
+//不使用1ms
 void Task_1ms(void)
 {
 }
 
 void Task_4ms(void)
 {
-	static uint16_t count;
-
-	if (++count >= 125u)
-	{
-		count = 0;
-		LED_Turn();
-	}
+	Update_Angle_Z();
+	PID_GetSpeed();
 }
 
 void Task_8ms(void)
 {
+	KeyNum = Key_GetNum();		//获取键码
+	if (KeyNum == 1)			//如果K1按下
+	{
+		RunFlag = 1;			
+	}
+
 }
 
 void Task_16ms(void)
 {
+
 }
 
 void Task_40ms(void)

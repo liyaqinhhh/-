@@ -1474,6 +1474,24 @@ void OLED_DrawArc(int16_t X, int16_t Y, uint8_t Radius, int16_t StartAngle, int1
 }
 
 /*********************功能函数*/
+void OLED_show(void)
+{
+	/*显示字符串*/
+	OLED_ShowString(0, 0, "OLED Test", OLED_8X16);
+	
+	/*显示整数*/
+	OLED_ShowNum(0, 2 * OLED_8X16, 1234567890, 10, OLED_8X16);
+	
+	
+	/*显示图像*/
+	//OLED_ShowImage(64, 0, 64, 64, OLED_Logo);
+	
+	/*使用printf函数打印格式化字符串*/
+	OLED_Printf(0, 6 * OLED_8X16, OLED_8X16, "Hello %s", "World");
+
+	/*更新显示*/
+	OLED_Update();
+}
 
 
 /*****************江协科技|版权所有****************/

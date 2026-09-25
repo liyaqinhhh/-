@@ -1,4 +1,6 @@
 #include "stm32f10x.h"                  // Device header
+#include "Encoder.h"
+#include "PID.h"
 
 /**
   * 函    数：编码器初始化
@@ -114,3 +116,4 @@ int16_t Encoder_Get(uint8_t n)
 	}
 	return 0;		//参数n非法，默认返回0
 }
+

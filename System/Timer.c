@@ -90,34 +90,25 @@ static void Time_Slice_Tick(void)
 	if (++count_4ms >= 4u)
 	{
 		count_4ms = 0;
-		if (time_slice_pending_4ms < TIME_SLICE_PENDING_MAX)
-		{
-			++time_slice_pending_4ms;
-		}
+		Task_4ms();
 	}
 	if (++count_8ms >= 8u)
 	{
 		count_8ms = 0;
-		if (time_slice_pending_8ms < TIME_SLICE_PENDING_MAX)
-		{
-			++time_slice_pending_8ms;
-		}
+		Task_8ms();
 	}
 	if (++count_16ms >= 16u)
 	{
 		count_16ms = 0;
-		time_slice_flags |= TIME_SLICE_TASK_16MS;
+		Task_16ms();
 	}
 	if (++count_40ms >= 40u)
 	{
 		count_40ms = 0;
-		if (time_slice_pending_40ms < TIME_SLICE_PENDING_MAX)
-		{
-			++time_slice_pending_40ms;
-		}
+		Task_40ms();
 	}
 }
-
+//弃用
 void Time_Slice_Main(void)
 {
 	uint8_t task_flags;
@@ -139,7 +130,7 @@ void Time_Slice_Main(void)
 
 	if (task_flags & TIME_SLICE_TASK_1MS)
 	{
-		Task_1ms();
+		//Task_1ms();
 	}
 	if (pending_4ms)
 	{

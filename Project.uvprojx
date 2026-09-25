@@ -10,7 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -819,6 +819,26 @@
               <FileType>5</FileType>
               <FilePath>.\User\stm32f10x_it.h</FilePath>
             </File>
+            <File>
+              <FileName>Init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\Init.c</FilePath>
+            </File>
+            <File>
+              <FileName>Init.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\Init.h</FilePath>
+            </File>
+            <File>
+              <FileName>PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>PID.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\PID.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -830,5 +850,14 @@
     <components/>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>Project</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

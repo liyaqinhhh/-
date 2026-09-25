@@ -18,12 +18,12 @@ void Key_Init(void)
 	/*GPIO初始化*/
 	GPIO_InitTypeDef GPIO_InitStructure;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_0;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &GPIO_InitStructure);					//将PB1和PB0引脚初始化为上拉输入
+	GPIO_Init(GPIOB, &GPIO_InitStructure);					//将PB4引脚初始化为上拉输入
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_4;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);					//将PA5和PA4引脚初始化为上拉输入
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_11 | GPIO_Pin_15;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);					//将PA9、PA11和PA15引脚初始化为上拉输入
 }
 
 /**
@@ -51,19 +51,19 @@ uint8_t Key_GetNum(void)
   */
 uint8_t Key_GetState(void)
 {
-	if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1) == 0)		//如果PB1引脚电平为0
+	if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4) == 0)		//如果PB4引脚电平为0
 	{
 		return 1;		//直接返回键码1
 	}
-	if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0) == 0)		//如果PB0引脚电平为0
+	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_9) == 0)		//如果PA9引脚电平为0
 	{
 		return 2;		//直接返回键码2
 	}
-	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5) == 0)		//如果PA5引脚电平为0
+	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) == 0)		//如果PA11引脚电平为0
 	{
 		return 3;		//直接返回键码3
 	}
-	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4) == 0)		//如果PA4引脚电平为0
+	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15) == 0)		//如果PA15引脚电平为0
 	{
 		return 4;		//直接返回键码4
 	}
